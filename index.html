@@ -13,22 +13,23 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-<body>
+<body style="color: #f7f7f7; background-color: #311;">
     <div class="wrapper">
-        <nav class="navbar navbar-expand-lg">
+        <!-- <nav class="navbar navbar-expand-lg"> -->
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg"></nav>
             <a class="navbar-brand" href="index.html">UFO Sightings</a>
           
         </nav>
     </div>
 
-    <div class=”jumbotron” style="background-color:aquamarine ; color: yellowgreen; height: 120px; background-image: linear-gradient(10deg, black, transparent);">
+    <div class=”jumbotron” style="background-image: url('static/images/banner.png'); height:max-content"> 
         <div>
             <!-- // to add bg image to jumbotron do it in the CSS file ? ? ?  -->
-            <br><h1>The Truth Is Out There</h1>
+            <br><h1 class="display-4">The Truth Is Out There</h1><br>
         </div>
     </div>
 
@@ -50,20 +51,23 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <form>
+                <form class="bg-dark">
                     <p>Filter Search</p>
-                </form>
-                <ul class="list-group">
-                    <li class="list-group-item">
+                    <ul>
+                      <li>
                         <label for="date">Enter Date</label>
                         <input type="text" placeholder="1/10/2010" id="datetime" />
-                    </li>
-                    <li class="list-group-item">
-                        <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
-                    </li>
-                </ul>
+                      </li>
+                      <li>
+                         <button id="filter-btn" type="button" class="btn btn-dark">
+                           Filter Table
+                         </button>
+                      </li>
+                    </ul>
+                </form>
+                
             </div>
-            
+
             <div class="col-md-9">
             <table class="table table-striped">
                 <thead>
@@ -82,6 +86,10 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    <script src="static/js/data.js"></script>
+    <script src="static/js/app.js"></script>
 
 </body>
 
