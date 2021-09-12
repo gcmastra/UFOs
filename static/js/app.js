@@ -7,7 +7,7 @@ var tbody = d3.select("tbody");
 function buildTable(data) {
   // First, clear out any existing data
   tbody.html("");
-  console.log("inside the buildTable function");
+  // console.log("inside the buildTable function");
 
   // Next, loop through each object in the data
   // and append a row and cells for each value in the row
@@ -80,22 +80,35 @@ function filterTable() {
   if (date) {
     filteredData = filteredData.filter(row => row.datetime === date);
   }
+  // my enhancement #1 - City State and Country are not mutually exclusive - 
+  // its too easy to get a zero result if they don't match
+  // so I think they should be modified to only use state if city is blank or only use country if city and state are blank
   if (city) {
     filteredData = filteredData.filter(row => row.city === city);
   }
-
-  // thats two fields if i can get it to work for 2 i can get it to work for 5
-  // these should be separate ifs not else ifs because its a intersection of all filters
-  if (state) {
+  else if (state) {
     filteredData = filteredData.filter(row => row.state === state);
   }
-  if (country) {
+  else if (country) {
     filteredData = filteredData.filter(row => row.country === country);
-  }
+  };
+  // shape is a standalone filter but I would like to display a list of valid choices if i knew how
+  // this would prevent misspelling or incorrect user input to result in zero search results
   if (shape) {
     filteredData = filteredData.filter(row => row.shape === shape);
   }
-  
+  // my enhancement - if any combination of search parameters results in zero hits, display a warning message
+  // and display the entire table again 
+  if (filteredData.length === 0) {
+    console.log(" inside filterTable no results len = 0");
+    // this next line works but its confusing unless I can clear the inputs before starting over
+    // filteredData = tableData;
+
+    // display a warning message in the text of the filter section
+    console.log("Display a warning message to the console and to one of the tags on the page");
+    // d3.select("#warning-msg").attr("text","Warning there were no results");
+        
+  }
   
   // 10. Finally, rebuild the table using the filtered data
   buildTable(filteredData);
@@ -104,7 +117,7 @@ function filterTable() {
   
   // 2. Attach an event to listen for changes to each filter
 d3.selectAll("input").on("change", updateFilters);
-console.log("test we are at the listener");
+// console.log("test we are at the listener");
   
   
 // Build the table when the page loads
